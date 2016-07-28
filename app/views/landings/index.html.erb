@@ -1,2 +1,24 @@
-<h1>Landings#index</h1>
-<p>Find me in app/views/landings/index.html.erb</p>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Welcome to KTest</h1>
+        <p>KTest brings together spelling bees and spellers who love the letter K. 
+        Select one of the options below to continue, depending on whether you are a speller or a bee organizer. If you've already signed up, hit the login link in the top right.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Speller</h2>
+          <p>You can upload information about your spelling history, and advertise your spelling abilities to bee organizers. </p>
+          <p><%= button_to "Continue >>", "/landings/spellersignup.html", :method => :get %></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Bee Organizer</h2>
+          <p>You can upload information about spelling bees and search for spellers who know the right letters in the right languages.</p>
+          <p><%= button_to "Continue >>", "/landings/beeorganizersignup.html", :method => :get %></p>
+       </div>
+    </div>

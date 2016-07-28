@@ -2,13 +2,21 @@ Rails.application.routes.draw do
   get 'landings/index'
 
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
+  devise_for :beeorganizers, controllers: {registrations: "beeorganizers/registrations", sessions: "beeorganizers/sessions", passwords: "beeorganizers/passwords"}, skip: [:sessions, :registrations]
   devise_for :admin_users, ActiveAdmin::Devise.config
+
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'landings#index'
+
+  get 'landings/spellersignup'
+  get 'landings/beeorganizersignup'
+
+  #/spellersignup 'landings#spellersignup.html'
+  #/beesignup 'landings#beesignup.html'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -70,5 +78,17 @@ Rails.application.routes.draw do
     put    "signup"  => "users/registrations#update", as: :update_user_registration
     get    "account" => "users/registrations#edit",   as: :edit_user_registration
   end
+
+  devise_scope :beeorganizer do
+    get    "organizerlogin"   => "beeorganizers/sessions#new",         as: :new_beeorganizer_session
+    post   "organizerlogin"   => "beeorganizers/sessions#create",      as: :beeorganizer_session
+    delete "organizersignout" => "beeorganizers/sessions#destroy",     as: :destroy_beeorganizer_session
+    
+    get    "organizersignup"  => "beeorganizers/registrations#new",    as: :new_beeorganizer_registration
+    post   "organizersignup"  => "beeorganizers/registrations#create", as: :beeorganizer_registration
+    put    "organizersignup"  => "beeorganizers/registrations#update", as: :update_beeorganizer_registration
+    get    "organizeraccount" => "beeorganizers/registrations#edit",   as: :edit_beeorganizer_registration
+  end
+
 
 end
